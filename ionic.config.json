@@ -1,0 +1,7 @@
+{
+  "name": "21913-ionicparking",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
