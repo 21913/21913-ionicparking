@@ -1,20 +1,57 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-app>
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title>Parking Calculator | {{selectedRegistration}}</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+ 
+  <ion-content>
+    <ion-item>
+      <ion-label position="stacked">Parked Car</ion-label>
+      <ion-input placeholder="registration plate" [(ngModel)]="selectedRegistration"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Hours Parked</ion-label>
+      <ion-input placeholder="0" type="number" [(ngModel)]="selectedHours"></ion-input>
+    </ion-item>
+ 
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="calculateCharge()">
+          Calculate
+        </ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button (click)="resetButton()">
+          Reset
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+ 
+    <ion-grid id="parkingTable">
+      <ion-row>
+        <ion-col>
+          <div>Reg.</div>
+        </ion-col>
+        <ion-col>
+          <div>Hours</div>
+        </ion-col>
+        <ion-col>
+          <div>Charge</div>
+        </ion-col>
+        <ion-col>
+          <div>RunTot.</div>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let charge of listOfCharges">
+        <ion-col>{{charge.registration}}</ion-col>
+        <ion-col>{{charge.hoursParked}}</ion-col>
+        <ion-col>{{charge.parkingCharge}}</ion-col>
+        <ion-col>{{charge.runningTotal}}</ion-col>
+      </ion-row>
+    </ion-grid>
+ 
+ 
+  </ion-content>
+ 
+</ion-app>
